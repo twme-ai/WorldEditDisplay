@@ -226,9 +226,9 @@ public abstract class RegionRenderer<T extends Region> {
     private Shape createLineShape(Line line, Color color, float thickness) {
         Location origin = getOrigin();
         Shape shape = plugin.getPacketShapeFactory()
-                .line(origin, line.start(), line.end(), thickness)
-            .rootAnchor(true)
-                .color(color)
+                .line(toPacketLocation(origin), line.start(), line.end(), thickness)
+                .rootAnchor(true)
+                .color(color.asARGB())
                 .seeThrough(isSeeThrough())
                 .doubleSided(true)
                 .brightness(15, 15)
@@ -304,9 +304,9 @@ public abstract class RegionRenderer<T extends Region> {
     protected void renderParallelogram(Vector3f p1, Vector3f p2, Vector3f p3, Color color) {
         Location origin = getOrigin();
         Shape shape = plugin.getPacketShapeFactory()
-                .parallelogram(origin, p1, p2, p3)
-            .rootAnchor(true)
-                .color(color)
+                .parallelogram(toPacketLocation(origin), p1, p2, p3)
+                .rootAnchor(true)
+                .color(color.asARGB())
                 .seeThrough(isSeeThrough())
                 .doubleSided(true)
                 .brightness(15, 15)
@@ -323,9 +323,9 @@ public abstract class RegionRenderer<T extends Region> {
     protected void renderTriangle(Vector3f p1, Vector3f p2, Vector3f p3, Color color) {
         Location origin = getOrigin();
         Shape shape = plugin.getPacketShapeFactory()
-                .triangle(origin, p1, p2, p3)
-            .rootAnchor(true)
-                .color(color)
+                .triangle(toPacketLocation(origin), p1, p2, p3)
+                .rootAnchor(true)
+                .color(color.asARGB())
                 .seeThrough(isSeeThrough())
                 .doubleSided(true)
                 .brightness(15, 15)
@@ -334,6 +334,16 @@ public abstract class RegionRenderer<T extends Region> {
         shape.addViewer(player.getUniqueId());
         shape.spawn();
         shapes.add(shape);
+    }
+
+    private static com.github.retrooper.packetevents.protocol.world.Location toPacketLocation(Location location) {
+        return new com.github.retrooper.packetevents.protocol.world.Location(
+                location.getX(),
+                location.getY(),
+                location.getZ(),
+                location.getYaw(),
+                location.getPitch()
+        );
     }
 
     public void setConfig(RenderConfig config) {

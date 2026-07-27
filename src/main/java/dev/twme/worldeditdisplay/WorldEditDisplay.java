@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.retrooper.packetevents.PacketEvents;
@@ -25,6 +26,7 @@ import dev.twme.worldeditdisplay.listener.PlayerQuitListener;
 import dev.twme.worldeditdisplay.share.ShareManager;
 import dev.twme.worldeditdisplay.util.MessageUtil;
 import dev.twme.textdisplayshape.packet.PacketShapeFactory;
+import dev.twme.textdisplayshape.packet.PacketViewerResolver;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import io.github.retrooper.packetevents.util.folia.FoliaScheduler;
 import io.github.retrooper.packetevents.util.folia.TaskWrapper;
@@ -74,7 +76,13 @@ public final class WorldEditDisplay extends JavaPlugin {
         PacketEvents.getAPI().init();
 
         virtualEntityManager = VirtualEntities.create();
-        packetShapeFactory = new PacketShapeFactory(virtualEntityManager);
+        packetShapeFactory = new PacketShapeFactory(
+                virtualEntityManager,
+                PacketViewerResolver.fromUsers(viewerId -> {
+                    org.bukkit.entity.Player player = Bukkit.getPlayer(viewerId);
+                    return player == null ? null : PacketEvents.getAPI().getPlayerManager().getUser(player);
+                })
+        );
 
         inboundListenerInstance = new InboundPacketListener();
         inboundPacketListener = PacketEvents.getAPI().getEventManager().registerListener(inboundListenerInstance, PacketListenerPriority.NORMAL);
