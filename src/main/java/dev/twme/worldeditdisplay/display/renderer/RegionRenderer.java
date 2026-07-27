@@ -10,7 +10,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.joml.Vector3f;
 
-import dev.twme.textdisplayshape.packet.PacketShapeFactory;
 import dev.twme.textdisplayshape.shape.Shape;
 import dev.twme.worldeditdisplay.WorldEditDisplay;
 import dev.twme.worldeditdisplay.config.PlayerRenderSettings;
@@ -138,7 +137,7 @@ public abstract class RegionRenderer<T extends Region> {
      */
     protected void renderLine(Line line, Color color, float thickness) {
         Location origin = getOrigin();
-        Shape shape = new PacketShapeFactory()
+        Shape shape = plugin.getPacketShapeFactory()
                 .line(origin, line.start(), line.end(), thickness)
             .rootAnchor(true)
                 .color(color)
@@ -216,7 +215,7 @@ public abstract class RegionRenderer<T extends Region> {
      */
     protected void renderParallelogram(Vector3f p1, Vector3f p2, Vector3f p3, Color color) {
         Location origin = getOrigin();
-        Shape shape = new PacketShapeFactory()
+        Shape shape = plugin.getPacketShapeFactory()
                 .parallelogram(origin, p1, p2, p3)
             .rootAnchor(true)
                 .color(color)
@@ -235,7 +234,7 @@ public abstract class RegionRenderer<T extends Region> {
      */
     protected void renderTriangle(Vector3f p1, Vector3f p2, Vector3f p3, Color color) {
         Location origin = getOrigin();
-        Shape shape = new PacketShapeFactory()
+        Shape shape = plugin.getPacketShapeFactory()
                 .triangle(origin, p1, p2, p3)
             .rootAnchor(true)
                 .color(color)
