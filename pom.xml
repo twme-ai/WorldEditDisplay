@@ -12,7 +12,7 @@
   <name>WorldEditDisplay</name>
 
   <properties>
-    <java.version>21</java.version>
+    <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <platform>paper</platform>
   </properties>
@@ -131,7 +131,7 @@
     <dependency>
       <groupId>com.github.twme-ai.TextDisplayShapes</groupId>
       <artifactId>textdisplayshape-packet</artifactId>
-      <version>v4.0.2</version>
+      <version>32039a6ca08f0d2df7308e7ec58d263fd4c8ec29</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

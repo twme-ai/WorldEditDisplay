@@ -2,8 +2,8 @@
 
 <div align="center">
 
-[![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21.x-brightgreen.svg)](https://www.minecraft.net/)
-[![Java Version](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
+[![Minecraft Version](https://img.shields.io/badge/Minecraft-1.19.4--26.2-brightgreen.svg)](https://www.minecraft.net/)
+[![Java Version](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.oracle.com/java/)
 [![License](https://img.shields.io/badge/License-Apache2.0-blue.svg)](LICENSE)
 
 A server-side WorldEdit selection visualization plugin | WorldEdit 選區視覺化伺服器端插件
@@ -20,7 +20,7 @@ A server-side WorldEdit selection visualization plugin | WorldEdit 選區視覺�
 
 WorldEditDisplay is a server-side plugin for Minecraft that adds visual selection rendering for WorldEdit. It intercepts WorldEdit's CUI (Client User Interface) protocol packets and renders selections using Display Entities on the server side. This means players can see their WorldEdit selections without installing any client-side mods.
 
-Version 2.6.0 remains based on upstream WorldEditDisplay 2.4.0 commit `9625ec0`. It preserves the retained-line renderer and expanded debug statistics while updating selection rendering to the platform-neutral [twme-ai/TextDisplayShapes](https://github.com/twme-ai/TextDisplayShapes) 4.0.2 packet module. WorldEditDisplay supplies its Bukkit-to-PacketEvents adapter at the plugin boundary; TextDisplayShapes and [VirtualEntities](https://github.com/twme-ai/VirtualEntities) remain independent of Bukkit.
+Version 2.6.0 remains based on upstream WorldEditDisplay 2.4.0 commit `9625ec0`. It preserves the retained-line renderer and expanded debug statistics while updating selection rendering to the platform-neutral [twme-ai/TextDisplayShapes](https://github.com/twme-ai/TextDisplayShapes) packet module. WorldEditDisplay supplies its Bukkit-to-PacketEvents adapter at the plugin boundary; TextDisplayShapes and [VirtualEntities](https://github.com/twme-ai/VirtualEntities) remain independent of Bukkit.
 
 ### Features
 
@@ -70,8 +70,11 @@ Players can customize their own rendering preferences:
 
 ### Requirements
 
-- Minecraft 1.20 ~ 1.21.x (Paper / Folia / Spigot)
-- Java 21 or higher
+- Minecraft 1.19.4 ~ 26.2 (Paper / Spigot, and Folia where available)
+- Java version required by the server release:
+  - Minecraft 1.19.4 ~ 1.20.4: Java 17
+  - Minecraft 1.20.5 ~ 1.21.11: Java 21
+  - Minecraft 26.x: Java 25
 - Required plugins:
   - [PacketEvents](https://github.com/retrooper/packetevents) 2.13.0+
 
@@ -373,8 +376,11 @@ WorldEditDisplay 是一個 Minecraft 伺服器端插件，為 WorldEdit 增加�
 
 ### 需求
 
-- Minecraft 1.20 ~ 1.21.x（Paper / Folia / Spigot）
-- Java 21 或更高版本
+- Minecraft 1.19.4 ~ 26.2（Paper / Spigot，以及適用版本的 Folia）
+- 依伺服器版本使用對應 Java：
+  - Minecraft 1.19.4 ~ 1.20.4：Java 17
+  - Minecraft 1.20.5 ~ 1.21.11：Java 21
+  - Minecraft 26.x：Java 25
 - 必要插件：
   - [PacketEvents](https://github.com/retrooper/packetevents) 2.13.0+
 
